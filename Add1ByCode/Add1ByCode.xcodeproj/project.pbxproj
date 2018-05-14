@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		65A75F2320A90E2800944F86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A75F2220A90E2800944F86 /* AppDelegate.swift */; };
-		65A75F2520A90E2800944F86 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A75F2420A90E2800944F86 /* ViewController.swift */; };
+		65A75F2520A90E2800944F86 /* GamePlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A75F2420A90E2800944F86 /* GamePlayViewController.swift */; };
 		65A75F2820A90E2800944F86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65A75F2620A90E2800944F86 /* Main.storyboard */; };
 		65A75F2A20A90E2900944F86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65A75F2920A90E2900944F86 /* Assets.xcassets */; };
 		65A75F3820A90E2900944F86 /* Add1ByCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A75F3720A90E2900944F86 /* Add1ByCodeTests.swift */; };
@@ -45,7 +45,7 @@
 /* Begin PBXFileReference section */
 		65A75F1F20A90E2800944F86 /* Add1ByCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Add1ByCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65A75F2220A90E2800944F86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		65A75F2420A90E2800944F86 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		65A75F2420A90E2800944F86 /* GamePlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayViewController.swift; sourceTree = "<group>"; };
 		65A75F2720A90E2800944F86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		65A75F2920A90E2900944F86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65A75F2E20A90E2900944F86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 				65A75F6320A90FA200944F86 /* fonts */,
 				65A75F6220A90F4800944F86 /* resources */,
 				65A75F2220A90E2800944F86 /* AppDelegate.swift */,
-				65A75F2420A90E2800944F86 /* ViewController.swift */,
+				65A75F2420A90E2800944F86 /* GamePlayViewController.swift */,
 				65A75F2620A90E2800944F86 /* Main.storyboard */,
 				65A75F2920A90E2900944F86 /* Assets.xcassets */,
 				65A75F2E20A90E2900944F86 /* Info.plist */,
@@ -308,7 +308,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65A75F2520A90E2800944F86 /* ViewController.swift in Sources */,
+				65A75F2520A90E2800944F86 /* GamePlayViewController.swift in Sources */,
 				65A75F2320A90E2800944F86 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
