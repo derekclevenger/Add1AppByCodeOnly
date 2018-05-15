@@ -22,15 +22,19 @@ class GamePlayViewController: UIViewController {
     
     var backgroundImage = UIImageView()
     var scoreImage = UIImageView()
-    var scoreText = UILabel()
+    var scoreLabel = UILabel()
+    var timerImage = UIImageView()
+    var timeLabel = UILabel()
+    var randomNumberImage = UIImageView()
+    var randomNumberLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSubViews()
         
 //        setupRandomNumberLabel()
-//        updateScoreLabel()
-//        updateTimeLabel()
+        updateScoreLabel()
+        updateTimeLabel()
         
         hud = MBProgressHUD(view:self.view)
         
@@ -50,13 +54,21 @@ class GamePlayViewController: UIViewController {
     func setupSubViews() {
         setupBackgroundImage()
         setupScoreImage()
-        setupScoreText()
+        setupScoreLabel()
+        setupTimerImage()
+        setupTimeLabel()
+        setupRandomNumberImage()
+        setupRandomNumberLabel()
     }
     
     func layoutSubViews() {
         layoutBackgroundImage()
         layoutScoreImage()
-        layoutScoreText()
+        layoutScoreLabel()
+        layoutTimerImage()
+        layoutTimeLabel()
+        layoutRandomNumberImage()
+        layoutRandomNumberLabel()
     }
     
     
@@ -92,21 +104,96 @@ class GamePlayViewController: UIViewController {
             ])
     }
     
-    func setupScoreText() {
-        scoreText.text = String(userScore)
-//        scoreText.font = "HVD_Comic_Serif_Pro" Need to fix this to have the right font
-        scoreText.contentMode = .scaleAspectFit
-        scoreText.translatesAutoresizingMaskIntoConstraints = false
+    func setupScoreLabel() {
+        scoreLabel.text = String(userScore)
+        scoreLabel.textColor = UIColor.brown
+        scoreLabel.font = UIFont(name: "HVDComicSerifPro", size: 20)
+        scoreLabel.contentMode = .scaleAspectFit
+        scoreLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        scoreImage.addSubview(scoreText)
+        scoreImage.addSubview(scoreLabel)
     }
     
-    func layoutScoreText() {
+    func layoutScoreLabel() {
         NSLayoutConstraint.activate([
-            scoreText.topAnchor.constraint(equalTo: scoreImage.topAnchor, constant: 5.0),
-            scoreText.leadingAnchor.constraint(equalTo: scoreImage.leadingAnchor, constant: 55.0),
-            scoreText.heightAnchor.constraint(equalToConstant: 40.0),
-            scoreText.widthAnchor.constraint(equalToConstant: 100.0)
+            scoreLabel.topAnchor.constraint(equalTo: scoreImage.topAnchor, constant: 5.0),
+            scoreLabel.leadingAnchor.constraint(equalTo: scoreImage.leadingAnchor, constant: 55.0),
+            scoreLabel.heightAnchor.constraint(equalToConstant: 40.0),
+            scoreLabel.widthAnchor.constraint(equalToConstant: 100.0)
+            ])
+    }
+    
+    func setupTimerImage() {
+        timerImage.image = UIImage(named: "time")
+        timerImage.contentMode = .scaleAspectFit
+        timerImage.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(timerImage)
+    }
+    
+    func layoutTimerImage() {
+        NSLayoutConstraint.activate([
+            timerImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 40.0),
+            timerImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15.0),
+            timerImage.heightAnchor.constraint(equalToConstant: 50.0),
+            timerImage.widthAnchor.constraint(equalToConstant: 140.0)
+            ])
+    }
+    
+    func setupTimeLabel() {
+        timeLabel.font = UIFont(name: "HVDComicSerifPro", size: 20)
+        timeLabel.textColor = UIColor.brown
+        timeLabel.contentMode = .scaleAspectFit
+        timeLabel.translatesAutoresizingMaskIntoConstraints = false
+       
+        
+        timerImage.addSubview(timeLabel)
+    }
+    
+    func layoutTimeLabel() {
+        NSLayoutConstraint.activate([
+            timeLabel.topAnchor.constraint(equalTo: timerImage.topAnchor, constant: 5.0),
+            timeLabel.leadingAnchor.constraint(equalTo: timerImage.leadingAnchor, constant: 30.0),
+            timeLabel.heightAnchor.constraint(equalToConstant: 40.0),
+            timeLabel.widthAnchor.constraint(equalToConstant: 100.0)
+            ])
+    }
+    
+    func setupRandomNumberImage() {
+        randomNumberImage.image = UIImage(named: "number")
+        randomNumberImage.contentMode = .scaleAspectFit
+        randomNumberImage.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(randomNumberImage)
+    }
+    
+    func layoutRandomNumberImage() {
+        NSLayoutConstraint.activate([
+            randomNumberImage.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.height * 0.2),
+            randomNumberImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: UIScreen.main.bounds.width * 0.13),
+            randomNumberImage.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * 0.3),
+            randomNumberImage.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.75)
+            ])
+    }
+    
+    func setupRandomNumberLabel() {
+        randomNumberLabel.text = getRandomNumber()
+        randomNumberLabel.textAlignment = .center
+        randomNumberLabel.textColor = UIColor.brown
+        randomNumberLabel.font = UIFont(name: "HVDComicSerifPro", size: 77)
+        randomNumberLabel.contentMode = .scaleAspectFit
+        randomNumberLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        randomNumberImage.addSubview(randomNumberLabel)
+    }
+    
+    func layoutRandomNumberLabel() {
+        NSLayoutConstraint.activate([
+            randomNumberLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.height * 0.21),
+            randomNumberLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: UIScreen.main.bounds.width * 0.13),
+            randomNumberLabel.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * 0.3),
+            randomNumberLabel.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.75)
             ])
     }
     
@@ -150,88 +237,84 @@ class GamePlayViewController: UIViewController {
 //        }
 //    }
 //
-//    @objc func onTimeUpdate()
-//    {
-//        if(seconds >= 0 && seconds < 15) {
-//            seconds += 1
-//            updateTimeLabel()
-//        }
-//        else if(seconds == 15) {
-//            if(timer != nil) {
-//                timer!.invalidate()
-//                timer = nil
-//                if(bonus == true) {
-//                    userScore = userScore * 2
-//                }
-//                let alertController = UIAlertController(title: "Time Up!", message: "Your time is up! You got a score of: \(userScore) points. Very good!", preferredStyle: .alert)
-//                let restartAction = UIAlertAction(title: "Restart", style: .default, handler: nil)
-//                alertController.addAction(restartAction)
-//
-//                self.present(alertController, animated: true, completion: nil)
-//
-//                userScore = 0
-//                seconds = 0
-//                count = 2
-//                bonus = false
-//                updateTimeLabel()
-//                updateScoreLabel()
-//                setupRandomNumberLabel()
-//            }
-//        }
-//    }
-//
-//    func updateTimeLabel() {
-//        if(bonusCounter == 5 && userScore != 0) {
-//            bonus = true
-//            seconds = 15
-//        }
-//        if(bonusCounter == 5) {
-//            seconds = 15
-//        }
-//        if(timeLabel != nil) {
-//            let minutes:Int = (seconds / 60) % 60
-//            let second:Int = seconds % 60
-//
-//            let minutesPassed:String = String(format: "%02d", minutes)
-//            let secondsPassed:String = String(format: "%02d", second)
-//
-//            timeLabel!.text = "\(minutesPassed):\(secondsPassed)"
-//        }
-//    }
-//
-//    func show(isRight:Bool) {
-//        var imageView:UIImageView?
-//
-//        if isRight {
-//            imageView = UIImageView(image: UIImage(named:"thumbs-up"))
-//        }
-//        else {
-//            imageView = UIImageView(image: UIImage(named:"thumbs-down"))
-//        }
-//
-//        if(imageView != nil) {
-//            hud?.mode = MBProgressHUDMode.customView
-//            hud?.customView = imageView
-//
-//            hud?.show(animated: true)
-//
+   func onTimeUpdate()
+    {
+        if(seconds >= 0 && seconds < 15) {
+            seconds += 1
+            updateTimeLabel()
+        }
+        else if(seconds == 15) {
+            if(timer != nil) {
+                timer!.invalidate()
+                timer = nil
+                if(bonus == true) {
+                    userScore = userScore * 2
+                }
+                let alertController = UIAlertController(title: "Time Up!", message: "Your time is up! You got a score of: \(userScore) points. Very good!", preferredStyle: .alert)
+                let restartAction = UIAlertAction(title: "Restart", style: .default, handler: nil)
+                alertController.addAction(restartAction)
+
+                self.present(alertController, animated: true, completion: nil)
+
+                userScore = 0
+                seconds = 0
+                count = 2
+                bonus = false
+                updateTimeLabel()
+                updateScoreLabel()
+                setupRandomNumberLabel()
+            }
+        }
+    }
+
+    func updateTimeLabel() {
+        if(bonusCounter == 5 && userScore != 0) {
+            bonus = true
+            seconds = 15
+        }
+        if(bonusCounter == 5 && userScore < 0) {
+            seconds = 15
+        }
+        if(timeLabel != nil) {
+            let minutes:Int = (seconds / 60) % 60
+            let second:Int = seconds % 60
+
+            let minutesPassed:String = String(format: "%02d", minutes)
+            let secondsPassed:String = String(format: "%02d", second)
+
+            timeLabel.text = "\(minutesPassed):\(secondsPassed)"
+        }
+    }
+
+    func show(isRight:Bool) {
+        var imageView:UIImageView?
+
+        if isRight {
+            imageView = UIImageView(image: UIImage(named:"thumbs-up"))
+        }
+        else {
+            imageView = UIImageView(image: UIImage(named:"thumbs-down"))
+        }
+
+        if(imageView != nil) {
+            hud?.mode = MBProgressHUDMode.customView
+            hud?.customView = imageView
+
+            hud?.show(animated: true)
+
 //            self.userInput?.text = ""
-//
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-//                self.hud?.hide(animated: true)
-//            }
-//        }
-//    }
-//
-//    func updateScoreLabel() {
-//        scoreLabel?.text = "\(userScore)"
-//
-//    }
-//
-//    func setupRandomNumberLabel() {
-//        numbersLabel?.text = getRandomNumber()
-//    }
-//
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                self.hud?.hide(animated: true)
+            }
+        }
+    }
+
+    func updateScoreLabel() {
+        scoreLabel.text = "\(userScore)"
+
+    }
+    
     func getRandomNumber() -> String {
         var randomNumber:String = ""
         
