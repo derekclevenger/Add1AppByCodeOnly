@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		18203C9892465BC8CBE4A6C2 /* Pods_Add1ByCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8846085D48E27B0E104B535D /* Pods_Add1ByCode.framework */; };
+		650CDDD620ABC76F009E0ADC /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650CDDD520ABC76F009E0ADC /* UIColor.swift */; };
 		65A75F2320A90E2800944F86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A75F2220A90E2800944F86 /* AppDelegate.swift */; };
 		65A75F2520A90E2800944F86 /* GamePlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A75F2420A90E2800944F86 /* GamePlayViewController.swift */; };
 		65A75F2820A90E2800944F86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65A75F2620A90E2800944F86 /* Main.storyboard */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		650CDDD520ABC76F009E0ADC /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		65A75F1F20A90E2800944F86 /* Add1ByCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Add1ByCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65A75F2220A90E2800944F86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65A75F2420A90E2800944F86 /* GamePlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayViewController.swift; sourceTree = "<group>"; };
@@ -106,9 +108,18 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		650CDDD420ABC72A009E0ADC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				650CDDD520ABC76F009E0ADC /* UIColor.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		65A75F1620A90E2800944F86 = {
 			isa = PBXGroup;
 			children = (
+				650CDDD420ABC72A009E0ADC /* Extensions */,
 				65A75F2120A90E2800944F86 /* Add1ByCode */,
 				65A75F3620A90E2900944F86 /* Add1ByCodeTests */,
 				65A75F4120A90E2900944F86 /* Add1ByCodeUITests */,
@@ -374,6 +385,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65A75F2520A90E2800944F86 /* GamePlayViewController.swift in Sources */,
+				650CDDD620ABC76F009E0ADC /* UIColor.swift in Sources */,
 				65A75F2320A90E2800944F86 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

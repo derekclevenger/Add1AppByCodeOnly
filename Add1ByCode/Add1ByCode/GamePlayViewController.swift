@@ -27,6 +27,7 @@ class GamePlayViewController: UIViewController {
     var timeLabel = UILabel()
     var randomNumberImage = UIImageView()
     var randomNumberLabel = UILabel()
+    var userInput = UITextField()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +43,7 @@ class GamePlayViewController: UIViewController {
             self.view.addSubview(hud!)
         }
         
-//        userInput?.addTarget(self, action: #selector(textDidChange(textField:)), for:UIControlEvents.editingChanged)
+        userInput.addTarget(self, action: #selector(textDidChange(textField:)), for:UIControlEvents.editingChanged)
         
     }
     
@@ -59,6 +60,7 @@ class GamePlayViewController: UIViewController {
         setupTimeLabel()
         setupRandomNumberImage()
         setupRandomNumberLabel()
+        setupUserInputText()
     }
     
     func layoutSubViews() {
@@ -69,6 +71,7 @@ class GamePlayViewController: UIViewController {
         layoutTimeLabel()
         layoutRandomNumberImage()
         layoutRandomNumberLabel()
+        layoutUserInputText()
     }
     
     
@@ -106,7 +109,7 @@ class GamePlayViewController: UIViewController {
     
     func setupScoreLabel() {
         scoreLabel.text = String(userScore)
-        scoreLabel.textColor = UIColor.brown
+        scoreLabel.textColor = UIColor.white
         scoreLabel.font = UIFont(name: "HVDComicSerifPro", size: 20)
         scoreLabel.contentMode = .scaleAspectFit
         scoreLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -142,7 +145,7 @@ class GamePlayViewController: UIViewController {
     
     func setupTimeLabel() {
         timeLabel.font = UIFont(name: "HVDComicSerifPro", size: 20)
-        timeLabel.textColor = UIColor.brown
+        timeLabel.textColor = UIColor.white
         timeLabel.contentMode = .scaleAspectFit
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
        
@@ -197,47 +200,70 @@ class GamePlayViewController: UIViewController {
             ])
     }
     
-//    @objc func textDidChange(textField:UITextField) {
-//        //TODO make it so that the game ends and stops the timer after 5.  Add the score plus remaining time.  Change don't want to try and
-//        // do the bonus of time plus score.  the math would get fuzzy due to wrongs?
-//        if userInput?.text?.count == count {
-//            if  let numberLabel    = numbersLabel?.text,
-//                let userInputText      = userInput?.text,
-//                let number         = Int(numberLabel),
-//                let userInput           = Int(userInputText)
-//            {
-//                count = count != 5 ? count + 1 : 5
-//                bonusCounter += 1
-//                print("Comparing: \(userInputText) minus \(numberLabel) == \(userInput - number)")
-//
-//                if(userInput - number == numberToCheck) {
-//
-//                    userScore += 1
-//
-//                    show(isRight: true)
-//                }
-//                else {
-//                    print("Incorrect!")
-//
-//                    userScore -= 1
-//
-//                    show(isRight: false)
-//                }
-//
-//            }
-//
-//            getNumberToCheck()
-//            setupRandomNumberLabel()
-//            updateScoreLabel()
-//
-//
-//            if(timer == nil) {
-//                timer = Timer.scheduledTimer(timeInterval: 1.0, target:self, selector:#selector(onTimeUpdate), userInfo:nil, repeats:true)
-//            }
-//        }
-//    }
-//
-   func onTimeUpdate()
+    func setupUserInputText() {
+        let myColor : UIColor = UIColor.lightGray
+        let blueColor = UIColor(hexString: "#6495ed")
+        userInput.backgroundColor = UIColor.clear
+        userInput.borderStyle = .roundedRect
+        userInput.textAlignment = .center
+        userInput.font = UIFont(name: "HVDComicSerifPro", size: 77)
+        userInput.layer.borderColor = myColor.cgColor
+        userInput.textColor = blueColor
+        userInput.keyboardType = .numberPad
+        userInput.contentMode = .scaleAspectFit
+        userInput.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(userInput)
+    }
+    
+    func layoutUserInputText() {
+        NSLayoutConstraint.activate([
+            userInput.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.height * 0.45),
+            userInput.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: UIScreen.main.bounds.width * 0.25),
+            userInput.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * 0.13),
+            userInput.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.5)
+            ])
+    }
+    
+    @objc func textDidChange(textField:UITextField) {
+        if userInput.text?.count == count {
+            if  let numberLabel    = randomNumberLabel.text,
+                let userInputText      = userInput.text,
+                let number         = Int(numberLabel),
+                let userInput           = Int(userInputText)
+            {
+                count = count != 5 ? count + 1 : 5
+                bonusCounter += 1
+                print("Comparing: \(userInputText) minus \(numberLabel) == \(userInput - number)")
+
+                if(userInput - number == numberToCheck) {
+
+                    userScore += 1
+
+                    show(isRight: true)
+                }
+                else {
+                    print("Incorrect!")
+
+                    userScore -= 1
+
+                    show(isRight: false)
+                }
+
+            }
+
+            getNumberToCheck()
+            setupRandomNumberLabel()
+            updateScoreLabel()
+
+
+            if(timer == nil) {
+                timer = Timer.scheduledTimer(timeInterval: 1.0, target:self, selector:#selector(onTimeUpdate), userInfo:nil, repeats:true)
+            }
+        }
+    }
+
+    @objc func onTimeUpdate()
     {
         if(seconds >= 0 && seconds < 15) {
             seconds += 1
@@ -260,6 +286,7 @@ class GamePlayViewController: UIViewController {
                 seconds = 0
                 count = 2
                 bonus = false
+                userInput.text = ""
                 updateTimeLabel()
                 updateScoreLabel()
                 setupRandomNumberLabel()
@@ -302,7 +329,7 @@ class GamePlayViewController: UIViewController {
 
             hud?.show(animated: true)
 
-//            self.userInput?.text = ""
+            userInput.text = ""
 
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                 self.hud?.hide(animated: true)
