@@ -28,17 +28,16 @@ class GamePlayViewController: UIViewController {
     var randomNumberImage = UIImageView()
     var randomNumberLabel = UILabel()
     var userInput = UITextField()
+    var explinationLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSubViews()
-        
-//        setupRandomNumberLabel()
         updateScoreLabel()
         updateTimeLabel()
         
         hud = MBProgressHUD(view:self.view)
-        
+        userInput.becomeFirstResponder()
         if(hud != nil) {
             self.view.addSubview(hud!)
         }
@@ -61,6 +60,7 @@ class GamePlayViewController: UIViewController {
         setupRandomNumberImage()
         setupRandomNumberLabel()
         setupUserInputText()
+        setupExplinationLabel()
     }
     
     func layoutSubViews() {
@@ -72,6 +72,7 @@ class GamePlayViewController: UIViewController {
         layoutRandomNumberImage()
         layoutRandomNumberLabel()
         layoutUserInputText()
+        layoutExplinationLabel()
     }
     
     
@@ -218,12 +219,35 @@ class GamePlayViewController: UIViewController {
     
     func layoutUserInputText() {
         NSLayoutConstraint.activate([
-            userInput.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.height * 0.45),
+            userInput.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.height * 0.47),
             userInput.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: UIScreen.main.bounds.width * 0.25),
             userInput.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * 0.13),
             userInput.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.5)
             ])
     }
+    
+    func setupExplinationLabel() {
+        explinationLabel.text = "Add 1 to each of the digits. So, 1357 becomes 2468."
+        explinationLabel.numberOfLines = 2
+        explinationLabel.textAlignment = .center
+        explinationLabel.textColor = UIColor.white
+        explinationLabel.font = UIFont(name: "HVDComicSerifPro", size: 20)
+        explinationLabel.contentMode = .scaleAspectFit
+        explinationLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        view.addSubview(explinationLabel)
+    }
+    
+    func layoutExplinationLabel() {
+        NSLayoutConstraint.activate([
+            explinationLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.height * 0.75),
+            explinationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: UIScreen.main.bounds.width * 0.15),
+            explinationLabel.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * 0.3),
+            explinationLabel.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.75)
+            ])
+    }
+    
     
     @objc func textDidChange(textField:UITextField) {
         if userInput.text?.count == count {
