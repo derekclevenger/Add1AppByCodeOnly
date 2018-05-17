@@ -16,7 +16,6 @@ class GamePlayViewController: UIViewController {
     var seconds:Int = 0
     var count = 2
     var numberToCheck = 11
-    var bonus = false
     var bonusCounter = 1
     var hud:MBProgressHUD?
     
@@ -309,7 +308,6 @@ class GamePlayViewController: UIViewController {
                 userScore = 0
                 seconds = 0
                 count = 2
-                bonus = false
                 bonusCounter = 1
                 userInput.text = ""
                 updateTimeLabel()
