@@ -17,7 +17,7 @@ class GamePlayViewController: UIViewController {
     var count = 2
     var numberToCheck = 11
     var bonus = false
-    var bonusCounter = 0
+    var bonusCounter = 1
     var hud:MBProgressHUD?
     
     var backgroundImage = UIImageView()
@@ -297,7 +297,7 @@ class GamePlayViewController: UIViewController {
             if(timer != nil) {
                 timer!.invalidate()
                 timer = nil
-                if(bonus == true) {
+                if(userScore > 0) {
                     userScore = userScore * 2
                 }
                 let alertController = UIAlertController(title: "Time Up!", message: "Your time is up! You got a score of: \(userScore) points. Very good!", preferredStyle: .alert)
@@ -310,6 +310,7 @@ class GamePlayViewController: UIViewController {
                 seconds = 0
                 count = 2
                 bonus = false
+                bonusCounter = 1
                 userInput.text = ""
                 updateTimeLabel()
                 updateScoreLabel()
@@ -319,11 +320,9 @@ class GamePlayViewController: UIViewController {
     }
 
     func updateTimeLabel() {
-        if(bonusCounter == 5 && userScore != 0) {
-            bonus = true
-            seconds = 15
-        }
-        if(bonusCounter == 5 && userScore < 0) {
+        print(bonusCounter)
+    
+        if(bonusCounter == 5) {
             seconds = 15
         }
         if(timeLabel != nil) {
