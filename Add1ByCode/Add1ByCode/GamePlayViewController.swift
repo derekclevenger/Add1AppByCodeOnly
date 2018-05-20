@@ -14,7 +14,7 @@ class GamePlayViewController: UIViewController {
     var userScore:Int = 0
     var timer:Timer?
     var seconds:Int = 0
-    var count = 2
+    var randomNumberCounter = 2
     var numberToCheck = 11
     var bonusCounter = 1
     var hud:MBProgressHUD?
@@ -249,13 +249,13 @@ class GamePlayViewController: UIViewController {
     
     
     @objc func textDidChange(textField:UITextField) {
-        if userInput.text?.count == count {
+        if userInput.text?.count == randomNumberCounter {
             if  let numberLabel    = randomNumberLabel.text,
                 let userInputText      = userInput.text,
                 let number         = Int(numberLabel),
                 let userInput           = Int(userInputText)
             {
-                count = count != 5 ? count + 1 : 5
+                randomNumberCounter = randomNumberCounter != 5 ? randomNumberCounter + 1 : 5
                 bonusCounter += 1
                 print("Comparing: \(userInputText) minus \(numberLabel) == \(userInput - number)")
 
@@ -307,7 +307,8 @@ class GamePlayViewController: UIViewController {
 
                 userScore = 0
                 seconds = 0
-                count = 2
+                randomNumberCounter = 2
+                numberToCheck = 11
                 bonusCounter = 1
                 userInput.text = ""
                 updateTimeLabel()
@@ -366,7 +367,7 @@ class GamePlayViewController: UIViewController {
     func getRandomNumber() -> String {
         var randomNumber:String = ""
         
-        for _ in 1...count
+        for _ in 1...randomNumberCounter
         {
             let digit:Int = Int(arc4random_uniform(8) + 1)
             
@@ -380,7 +381,7 @@ class GamePlayViewController: UIViewController {
     func getNumberToCheck()  {
         var randomNum:String = ""
         
-        for _ in 1...count
+        for _ in 1...randomNumberCounter
         {
             let digit:Int = Int(arc4random_uniform(1) + 1)
             

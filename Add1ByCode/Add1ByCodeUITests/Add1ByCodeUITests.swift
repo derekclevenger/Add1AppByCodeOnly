@@ -28,9 +28,48 @@ class Add1ByCodeUITests: XCTestCase {
         super.tearDown()
     }
     
+   
     func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+//        let app = XCUIApplication()
+//        app.staticTexts.element(boundBy: 0).tap()
+//        let app2 = app
+//        var randomNum = app.staticTexts.element(boundBy: 3).label
+//        //app.staticTexts.element(boundBy: 4).staticTexts = randomNum + 11
+//        
+//        
+//        let app = XCUIApplication()
+//        let restartButton = app.alerts["Time Up!"].buttons["Restart"]
+//        restartButton.tap()
+//        
+//        let key = app/*@START_MENU_TOKEN@*/.keys["2"]/*[[".keyboards.keys[\"2\"]",".keys[\"2\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+//        key.tap()
+//        key.tap()
+//        
+//        let key2 = app/*@START_MENU_TOKEN@*/.keys["1"]/*[[".keyboards.keys[\"1\"]",".keys[\"1\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+//        key2.tap()
+//        key2.tap()
+//        key2.tap()
+//        key2.tap()
+//        key.tap()
+//        key.tap()
+//        
+//        let key3 = app/*@START_MENU_TOKEN@*/.keys["4"]/*[[".keyboards.keys[\"4\"]",".keys[\"4\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+//        key3.tap()
+//        key3.tap()
+//        key3.tap()
+//        key3.tap()
+//        
+//        let key4 = app/*@START_MENU_TOKEN@*/.keys["5"]/*[[".keyboards.keys[\"5\"]",".keys[\"5\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+//        key4.tap()
+//        key4.tap()
+//        restartButton.tap()
+       //app.staticTexts.element(boundBy: 4).value = randomNum + 11
+        
+        
+    }
+    
+    func newTest() {
+        
     }
     
 }
